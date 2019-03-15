@@ -1,0 +1,25 @@
+name: am_i_done_yet
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+    sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+    flutter:
+        sdk: flutter
+    cloud_firestore:
+    percent_indicator:
+    firebase_auth: ^0.6.2+1
+    google_sign_in: ^3.2.1
+    flutter_firebase_ui: 0.0.13
+
+dev_dependencies:
+    flutter_test:
+        sdk: flutter
+
+flutter:
+    uses-material-design: true
+    
+    assets:
+      - assets/splash.png

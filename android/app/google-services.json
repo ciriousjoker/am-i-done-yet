@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "379155807813",
+    "firebase_url": "https://am-i-done-yet.firebaseio.com",
+    "project_id": "am-i-done-yet",
+    "storage_bucket": "am-i-done-yet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379155807813:android:cc94f8dfbe8253c7",
+        "android_client_info": {
+          "package_name": "de.ciriousjoker.am_i_done_yet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379155807813-qd5alro1ihfgdqgsdebc8n31p521v25b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.ciriousjoker.am_i_done_yet",
+            "certificate_hash": "a16503587a1231acfa0e849cb01cd634b588fbaf"
+          }
+        },
+        {
+          "client_id": "379155807813-crjcdt077n7es6fsa3as38nkj38p3j6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvJduKnKImv-mX1VZr1tfggr8clN0PxM0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379155807813-crjcdt077n7es6fsa3as38nkj38p3j6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
