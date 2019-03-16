@@ -30,7 +30,7 @@ class _AppState extends State<App> {
 
 	@override
 	void dispose() {
-		_listen.cancel();
+		_listen?.cancel();
 		super.dispose();
 	}
 
@@ -151,7 +151,7 @@ class _TodoState extends State<Todo> {
 			margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
 			child: ClipRRect(
 				borderRadius: BorderRadius.all(Radius.circular(4)),
-				child: LayoutBuilder(builder: (ctx, c) {
+				child: LayoutBuilder(builder: (ct, c) {
 					return Stack(children: [
 						LinearPercentIndicator(
 							width: c.maxWidth,
