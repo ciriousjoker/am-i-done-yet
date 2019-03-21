@@ -22,7 +22,7 @@ If I had this code base and an infinite amount of bytes available, I would do th
 
 - write (or restore, rather) an intermediate class for App <-> Firestore communication.
 - Replace all var keyword and add redundant typings where I removed them
-- Extract the ListView and everything below it into a new file
+- Use the BloC pattern for everything
 - Name the variables better
 - Add some comments where needed
 - Use spaces instead of tabs (this conversion saved around 700 bytes alone)
