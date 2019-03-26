@@ -8,6 +8,8 @@ Items are sorted by progress (descending), completed items are at the bottom.
 
 Either clone the source code and execute `flutter run` or download the app via the Google Play Store. An iOS App is currently unavailable as I don't yet own a $10.000 iMac Pro to press compile on. However, you're free to download the sourcecode and build it for your own. Just be nice and don't upload it to any app store.
 
+[<img src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="100px"/>](https://play.google.com/store/apps/details?id=de.ciriousjoker.am_i_done_yet&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+
 ## Screenshots
 
 |                      Login                       |                      Main Screen                       |
@@ -22,7 +24,7 @@ If I had this code base and an infinite amount of bytes available, I would do th
 
 - write (or restore, rather) an intermediate class for App <-> Firestore communication.
 - Replace all var keyword and add redundant typings where I removed them
-- Extract the ListView and everything below it into a new file
+- Use the BloC pattern for everything
 - Name the variables better
 - Add some comments where needed
 - Use spaces instead of tabs (this conversion saved around 700 bytes alone)
@@ -36,3 +38,5 @@ Just check the [firestore rules](./firestore.rules), I do know what good code st
 This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+
+Google Play and the Google Play logo are trademarks of Google LLC.
