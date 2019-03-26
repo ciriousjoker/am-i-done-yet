@@ -1,10 +1,10 @@
 service cloud.firestore {
   match /databases/{database}/documents {
     match /todos/{todoId} {
-      allow read: if loggedInAs(resourceField("uid"));
-      allow delete: if loggedInAs(resourceField("uid"));
-      allow update: if validTodoUpdateRequest();
       allow create: if validTodoCreateRequest(todoId);
+      allow read: if loggedInAs(resourceField("uid"));
+      allow update: if validTodoUpdateRequest();
+      allow delete: if loggedInAs(resourceField("uid"));
     }
   }
   
