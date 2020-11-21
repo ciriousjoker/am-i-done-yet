@@ -1,0 +1,36 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build apk & appbundle",
+      "type": "shell",
+      "group": "build",
+      "command": "flutter build apk --release --no-tree-shake-icons && flutter build appbundle --release --no-tree-shake-icons",
+      "dependsOn": ["clean"],
+      "problemMatcher": []
+    },
+    {
+      "label": "build apk",
+      "type": "shell",
+      "group": "build",
+      "command": "flutter build apk --release --no-tree-shake-icons",
+      "dependsOn": ["clean"],
+      "problemMatcher": []
+    },
+    {
+      "label": "build appbundle",
+      "type": "shell",
+      "group": "build",
+      "command": "flutter build appbundle --release --no-tree-shake-icons",
+      "dependsOn": ["clean"],
+      "problemMatcher": []
+    },
+    {
+      "label": "clean",
+      "type": "shell",
+      "command": "flutter clean"
+    }
+  ]
+}

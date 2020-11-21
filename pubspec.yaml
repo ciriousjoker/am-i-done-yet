@@ -1,0 +1,28 @@
+name: amidoneyet
+description: A todo app with a twist.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  percent_indicator: ^2.1.8
+  sembast: ^2.4.8
+  animated_stream_list: ^1.1.0
+  path_provider: ^1.6.24
+  uuid: ^2.2.2
+  autolist: ^0.1.0+2
+  implicitly_animated_reorderable_list: ^0.3.2
+  flutter_sticky_header: ^0.5.0
+  delayed_display: ^1.1.0
+  flutter_markdown: ^0.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
