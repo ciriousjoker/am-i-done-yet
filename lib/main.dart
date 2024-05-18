@@ -19,11 +19,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: GeneralConfig.appname,
       theme: ThemeData(
-        primaryColor: ColorsConfig.primary,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: ColorsConfig.primary,
+          secondary: ColorsConfig.accent,
+          surface: ColorsConfig.primary,
+          surfaceContainer: ColorsConfig.primary,
+          surfaceTint: ColorsConfig.primary,
+          onSurface: Colors.white,
+        ),
         primaryTextTheme: Typography.material2018().white,
         textTheme: Typography.material2018().white,
-        colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: ColorsConfig.accent),
       ),
       home: HomeScreen(),
     );
