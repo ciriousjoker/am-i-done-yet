@@ -29,5 +29,10 @@
     "statusBarItem.remoteBackground": "#01579b",
     "statusBarItem.remoteForeground": "#e7e7e7"
   },
-  "peacock.color": "#01579b"
+  "peacock.color": "#01579b",
+  // This should match the formatter used in the CI,
+  // otherwise there will be many unnecessary git diffs across language files (read: *.arb).
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
