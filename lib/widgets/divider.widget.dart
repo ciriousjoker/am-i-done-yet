@@ -6,7 +6,7 @@ import 'package:amidoneyet/models/todo.model.dart';
 import 'package:flutter/material.dart';
 
 class DividerWidget extends StatelessWidget {
-  const DividerWidget({Key key}) : super(key: key);
+  const DividerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class DividerWidget extends StatelessWidget {
           stream: db.getStream(pinned: false, limit: 1),
           builder: (context, snapNormal) {
             if (!snapPinned.hasData || !snapPinned.hasData) return Container();
-            if (snapPinned.data.isEmpty || snapNormal.data.isEmpty)
+            if (snapPinned.data!.isEmpty || snapNormal.data!.isEmpty)
               return Container();
 
             return Container(

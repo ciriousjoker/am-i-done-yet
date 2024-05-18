@@ -8,9 +8,9 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class TodoWidget extends StatefulWidget {
   const TodoWidget({
-    Key key,
-    @required this.todo,
-  }) : super(key: key);
+    super.key,
+    required this.todo,
+  });
 
   final TodoModel todo;
 
@@ -25,12 +25,11 @@ class _TodoWidgetState extends State<TodoWidget> {
   void initState() {
     super.initState();
     _percent = widget.todo.priority;
-    assert(widget.todo != null);
   }
 
   @override
   Widget build(BuildContext context) {
-    String title = widget.todo.title ?? "";
+    String title = widget.todo.title;
 
     return Container(
       height: GeneralConfig.todoHeight,
@@ -44,7 +43,7 @@ class _TodoWidgetState extends State<TodoWidget> {
         child: LayoutBuilder(builder: (ct, c) {
           return Stack(children: [
             LinearPercentIndicator(
-              linearStrokeCap: LinearStrokeCap.butt,
+              barRadius: Radius.circular(300),
               padding: EdgeInsets.all(0),
               lineHeight: c.maxHeight,
               percent: _percent,
@@ -69,14 +68,13 @@ class _TodoWidgetState extends State<TodoWidget> {
                 });
               },
               onHorizontalDragEnd: (d) async {
-                assert(widget.todo.timestamp != null);
                 db.update(
                   TodoModel(
                     id: widget.todo.id,
                     title: widget.todo.title,
                     priority: _percent,
                     pinned: false,
-                    timestamp: widget.todo.timestamp ?? DateTime.now(),
+                    timestamp: widget.todo.timestamp,
                   ),
                 );
               },

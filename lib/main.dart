@@ -20,9 +20,10 @@ class MyApp extends StatelessWidget {
       title: GeneralConfig.appname,
       theme: ThemeData(
         primaryColor: ColorsConfig.primary,
-        accentColor: ColorsConfig.accent,
         primaryTextTheme: Typography.material2018().white,
         textTheme: Typography.material2018().white,
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: ColorsConfig.accent),
       ),
       home: HomeScreen(),
     );
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
+  HomeScreen({super.key});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -68,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 children: [
                   Expanded(
-                    child: snapshot.data
+                    child: snapshot.data!
                         ? EmptyWidget()
                         : CustomScrollView(
                             slivers: <Widget>[
@@ -120,8 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _delay({
-    Duration delay,
-    Widget child,
+    required Duration delay,
+    required Widget child,
     Offset slidingBeginOffset = const Offset(0, 0.1),
   }) {
     return DelayedDisplay(

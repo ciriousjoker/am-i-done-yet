@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class AddTodoBarWidget extends StatefulWidget {
-  AddTodoBarWidget({Key key}) : super(key: key);
+  AddTodoBarWidget({super.key});
 
   @override
   _AddTodoBarWidgetState createState() => _AddTodoBarWidgetState();
@@ -56,7 +56,7 @@ class _AddTodoBarWidgetState extends State<AddTodoBarWidget>
   }
 
   void _addTodo(String name) {
-    if ((name ?? "").isEmpty) return;
+    if (name.isEmpty) return;
     db.create(TodoModel(
       id: Uuid().v4().toString(),
       title: name,

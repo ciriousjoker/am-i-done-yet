@@ -3,15 +3,15 @@ import 'package:amidoneyet/helper/db.helper.dart';
 import 'package:amidoneyet/models/todo.model.dart';
 import 'package:amidoneyet/widgets/todo.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
-import 'package:implicitly_animated_reorderable_list/transitions.dart';
+import 'package:implicitly_animated_reorderable_list_2/implicitly_animated_reorderable_list_2.dart';
+import 'package:implicitly_animated_reorderable_list_2/transitions.dart';
 
 class ListWidget extends StatefulWidget {
   ListWidget({
-    Key key,
+    super.key,
     this.pinned = false,
     this.hasStickyHeader = false,
-  }) : super(key: key);
+  });
 
   final bool pinned;
   final bool hasStickyHeader;
@@ -27,7 +27,7 @@ class _ListWidgetState extends State<ListWidget> {
       stream: db.getStream(pinned: widget.pinned),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return SizedBox.shrink();
-        List<TodoModel> items = snapshot.data;
+        List<TodoModel> items = snapshot.data!;
 
         return ImplicitlyAnimatedReorderableList<TodoModel>(
           header: widget.hasStickyHeader
@@ -56,7 +56,7 @@ class _ListWidgetState extends State<ListWidget> {
     BuildContext context,
     Animation<double> animation,
     TodoModel item, [
-    int index,
+    int? index,
   ]) {
     return Reorderable(
       key: ValueKey(item),

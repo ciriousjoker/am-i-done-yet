@@ -10,11 +10,11 @@ class TodoModel {
   final DateTime timestamp;
 
   const TodoModel({
-    this.id,
-    this.title,
-    this.priority,
-    this.pinned,
-    this.timestamp,
+    required this.id,
+    required this.title,
+    required this.priority,
+    required this.pinned,
+    required this.timestamp,
   });
 
   TodoModel.fromJson(Map<String, dynamic> json)
