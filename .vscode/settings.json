@@ -1,6 +1,14 @@
 {
   "dart.lineLength": 120,
   "dart.flutterSdkPath": ".fvm/flutter_sdk",
+  "search.exclude": {
+    // Remove .fvm files from search
+    "**/.fvm": true
+  },
+  "files.watcherExclude": {
+    // Remove fvm from file watching
+    "**/.fvm": true
+  },
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#01579b",
     "titleBar.inactiveBackground": "#01579b99",
