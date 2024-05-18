@@ -1,0 +1,7 @@
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    always_use_package_imports: true
+    await_only_futures: true
+    unawaited_futures: true
