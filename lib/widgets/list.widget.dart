@@ -7,7 +7,7 @@ import 'package:implicitly_animated_reorderable_list_2/implicitly_animated_reord
 import 'package:implicitly_animated_reorderable_list_2/transitions.dart';
 
 class ListWidget extends StatefulWidget {
-  ListWidget({
+  const ListWidget({
     super.key,
     this.pinned = false,
     this.hasStickyHeader = false,
@@ -26,8 +26,8 @@ class _ListWidgetState extends State<ListWidget> {
     return StreamBuilder<List<TodoModel>>(
       stream: db.getStream(pinned: widget.pinned),
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return SizedBox.shrink();
-        List<TodoModel> items = snapshot.data!;
+        if (!snapshot.hasData) return const SizedBox.shrink();
+        final List<TodoModel> items = snapshot.data!;
 
         return ImplicitlyAnimatedReorderableList<TodoModel>(
           header: widget.hasStickyHeader

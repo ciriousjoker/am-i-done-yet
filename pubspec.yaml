@@ -8,10 +8,13 @@ environment:
 
 dependencies:
   delayed_display: ^2.0.0
+  flutter:
+    sdk: flutter
   flutter_markdown: ^0.7.1
   flutter_sticky_header: ^0.6.5
   implicitly_animated_reorderable_list_2: ^0.6.0
   lint: ^2.1.2
+  path: ^1.9.0
   path_provider: ^2.1.3
   percent_indicator: ^4.2.3
   sembast: ^3.7.1

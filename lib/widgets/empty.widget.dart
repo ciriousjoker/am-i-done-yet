@@ -18,7 +18,7 @@ class EmptyWidget extends StatelessWidget {
     return DelayedDisplay(
       delay: GeneralConfig.emptyAnimationDelay,
       slidingCurve: Curves.easeOutCubic,
-      slidingBeginOffset: Offset(0, 0.02),
+      slidingBeginOffset: const Offset(0, 0.02),
       child: Center(
         child: Container(
           constraints: BoxConstraints(
@@ -40,7 +40,6 @@ class EmptyWidget extends StatelessWidget {
               ),
               UIHelper.verticalSpaceLarge(),
               MarkdownBody(
-                shrinkWrap: true,
                 data: """
 - Add a new item *(pinned)*
 - Swipe to set priority *(unpins it)*
@@ -60,7 +59,6 @@ class EmptyWidget extends StatelessWidget {
                     color: color,
                   ),
                 ),
-                fitContent: true,
               ),
               UIHelper.verticalSpaceLarge(),
               UIHelper.verticalSpaceLarge(),

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_classes_with_only_static_members, constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class UIHelper {
@@ -28,7 +30,7 @@ class UIHelper {
 
   /// Returns a vertical space equal to the [height] supplied
   static Widget verticalSpace(double height) {
-    return Container(height: height, width: 0);
+    return SizedBox(height: height, width: 0);
   }
 
   /// Returns a vertical space with height set to [HorizontalSpaceSmall]
@@ -48,6 +50,6 @@ class UIHelper {
 
   /// Returns a vertical space equal to the [width] supplied
   static Widget horizontalSpace(double width) {
-    return Container(width: width, height: 0);
+    return SizedBox(width: width, height: 0);
   }
 }

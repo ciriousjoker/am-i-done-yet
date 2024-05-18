@@ -29,61 +29,68 @@ class _TodoWidgetState extends State<TodoWidget> {
 
   @override
   Widget build(BuildContext context) {
-    String title = widget.todo.title;
+    final String title = widget.todo.title;
 
     return Container(
       height: GeneralConfig.todoHeight,
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: UIHelper.HorizontalSpaceMedium,
         vertical: UIHelper.VerticalSpaceSmall,
       ),
       child: ClipRRect(
-        borderRadius:
-            BorderRadius.all(Radius.circular(GeneralConfig.todoBorderRadius)),
-        child: LayoutBuilder(builder: (ct, c) {
-          return Stack(children: [
-            LinearPercentIndicator(
-              barRadius: Radius.circular(300),
-              padding: EdgeInsets.all(0),
-              lineHeight: c.maxHeight,
-              percent: _percent,
-              backgroundColor: ColorsConfig.primaryLightened,
-              progressColor: ColorsConfig.accent,
-            ),
-            ListTile(
-              title: Text(
-                title,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            GestureDetector(
-              onHorizontalDragUpdate: (d) {
-                if (!mounted) return;
-                setState(() {
-                  _percent += d.delta.dx / c.maxWidth;
-                  if (_percent > 1) _percent = 1;
-                  if (_percent < 0) _percent = 0;
-                });
-              },
-              onHorizontalDragEnd: (d) async {
-                db.update(
-                  TodoModel(
-                    id: widget.todo.id,
-                    title: widget.todo.title,
-                    priority: _percent,
-                    pinned: false,
-                    timestamp: widget.todo.timestamp,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(GeneralConfig.todoBorderRadius),
+        ),
+        child: LayoutBuilder(
+          builder: (ct, c) {
+            return Stack(
+              children: [
+                LinearPercentIndicator(
+                  barRadius: const Radius.circular(300),
+                  padding: EdgeInsets.zero,
+                  lineHeight: c.maxHeight,
+                  percent: _percent,
+                  backgroundColor: ColorsConfig.primaryLightened,
+                  progressColor: ColorsConfig.accent,
+                ),
+                ListTile(
+                  title: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                );
-              },
-              onLongPress: () {
-                db.delete(widget.todo.id);
-              },
-            ),
-          ]);
-        }),
+                ),
+                GestureDetector(
+                  onHorizontalDragUpdate: (d) {
+                    if (!mounted) return;
+                    setState(() {
+                      _percent += d.delta.dx / c.maxWidth;
+                      if (_percent > 1) _percent = 1;
+                      if (_percent < 0) _percent = 0;
+                    });
+                  },
+                  onHorizontalDragEnd: (d) {
+                    db.update(
+                      TodoModel(
+                        id: widget.todo.id,
+                        title: widget.todo.title,
+                        priority: _percent,
+                        pinned: false,
+                        timestamp: widget.todo.timestamp,
+                      ),
+                    );
+                  },
+                  onLongPress: () {
+                    db.delete(widget.todo.id);
+                  },
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
