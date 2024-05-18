@@ -7,7 +7,7 @@
       "label": "build apk & appbundle",
       "type": "shell",
       "group": "build",
-      "command": "flutter build apk --release --no-tree-shake-icons && flutter build appbundle --release --no-tree-shake-icons",
+      "command": "fvm flutter build apk --release --no-tree-shake-icons && fvm flutter build appbundle --release --no-tree-shake-icons",
       "dependsOn": ["clean"],
       "problemMatcher": []
     },
@@ -15,7 +15,7 @@
       "label": "build apk",
       "type": "shell",
       "group": "build",
-      "command": "flutter build apk --release --no-tree-shake-icons",
+      "command": "fvm flutter build apk --release --no-tree-shake-icons",
       "dependsOn": ["clean"],
       "problemMatcher": []
     },
@@ -23,14 +23,14 @@
       "label": "build appbundle",
       "type": "shell",
       "group": "build",
-      "command": "flutter build appbundle --release --no-tree-shake-icons",
+      "command": "fvm flutter build appbundle --release --no-tree-shake-icons",
       "dependsOn": ["clean"],
       "problemMatcher": []
     },
     {
       "label": "clean",
       "type": "shell",
-      "command": "flutter clean"
+      "command": "fvm flutter clean"
     }
   ]
 }
