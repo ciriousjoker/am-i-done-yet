@@ -8,9 +8,9 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class TodoWidget extends StatefulWidget {
   const TodoWidget({
-    Key key,
-    @required this.todo,
-  }) : super(key: key);
+    super.key,
+    required this.todo,
+  });
 
   final TodoModel todo;
 
@@ -25,67 +25,72 @@ class _TodoWidgetState extends State<TodoWidget> {
   void initState() {
     super.initState();
     _percent = widget.todo.priority;
-    assert(widget.todo != null);
   }
 
   @override
   Widget build(BuildContext context) {
-    String title = widget.todo.title ?? "";
+    final String title = widget.todo.title;
 
     return Container(
       height: GeneralConfig.todoHeight,
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: UIHelper.HorizontalSpaceMedium,
         vertical: UIHelper.VerticalSpaceSmall,
       ),
       child: ClipRRect(
-        borderRadius:
-            BorderRadius.all(Radius.circular(GeneralConfig.todoBorderRadius)),
-        child: LayoutBuilder(builder: (ct, c) {
-          return Stack(children: [
-            LinearPercentIndicator(
-              linearStrokeCap: LinearStrokeCap.butt,
-              padding: EdgeInsets.all(0),
-              lineHeight: c.maxHeight,
-              percent: _percent,
-              backgroundColor: ColorsConfig.primaryLightened,
-              progressColor: ColorsConfig.accent,
-            ),
-            ListTile(
-              title: Text(
-                title,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            GestureDetector(
-              onHorizontalDragUpdate: (d) {
-                if (!mounted) return;
-                setState(() {
-                  _percent += d.delta.dx / c.maxWidth;
-                  if (_percent > 1) _percent = 1;
-                  if (_percent < 0) _percent = 0;
-                });
-              },
-              onHorizontalDragEnd: (d) async {
-                assert(widget.todo.timestamp != null);
-                db.update(
-                  TodoModel(
-                    id: widget.todo.id,
-                    title: widget.todo.title,
-                    priority: _percent,
-                    pinned: false,
-                    timestamp: widget.todo.timestamp ?? DateTime.now(),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(GeneralConfig.todoBorderRadius),
+        ),
+        child: LayoutBuilder(
+          builder: (ct, c) {
+            return Stack(
+              children: [
+                LinearPercentIndicator(
+                  barRadius: const Radius.circular(300),
+                  padding: EdgeInsets.zero,
+                  lineHeight: c.maxHeight,
+                  percent: _percent,
+                  backgroundColor: ColorsConfig.primaryLightened,
+                  progressColor: ColorsConfig.accent,
+                ),
+                ListTile(
+                  title: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                );
-              },
-              onLongPress: () {
-                db.delete(widget.todo.id);
-              },
-            ),
-          ]);
-        }),
+                ),
+                GestureDetector(
+                  onHorizontalDragUpdate: (d) {
+                    if (!mounted) return;
+                    setState(() {
+                      _percent += d.delta.dx / c.maxWidth;
+                      if (_percent > 1) _percent = 1;
+                      if (_percent < 0) _percent = 0;
+                    });
+                  },
+                  onHorizontalDragEnd: (d) {
+                    db.update(
+                      TodoModel(
+                        id: widget.todo.id,
+                        title: widget.todo.title,
+                        priority: _percent,
+                        pinned: false,
+                        timestamp: widget.todo.timestamp,
+                      ),
+                    );
+                  },
+                  onLongPress: () {
+                    db.delete(widget.todo.id);
+                  },
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

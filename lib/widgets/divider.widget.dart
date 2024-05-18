@@ -6,7 +6,7 @@ import 'package:amidoneyet/models/todo.model.dart';
 import 'package:flutter/material.dart';
 
 class DividerWidget extends StatelessWidget {
-  const DividerWidget({Key key}) : super(key: key);
+  const DividerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +14,22 @@ class DividerWidget extends StatelessWidget {
       stream: db.getStream(pinned: true, limit: 1),
       builder: (context, snapPinned) {
         return StreamBuilder<List<TodoModel>>(
-          stream: db.getStream(pinned: false, limit: 1),
+          stream: db.getStream(limit: 1),
           builder: (context, snapNormal) {
-            if (!snapPinned.hasData || !snapPinned.hasData) return Container();
-            if (snapPinned.data.isEmpty || snapNormal.data.isEmpty)
-              return Container();
+            if (!snapPinned.hasData || !snapPinned.hasData) {
+              return const SizedBox.shrink();
+            }
+            if (snapPinned.data!.isEmpty || snapNormal.data!.isEmpty) {
+              return const SizedBox.shrink();
+            }
 
             return Container(
               height: GeneralConfig.dividerHeight,
               color: ColorsConfig.primary,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: UIHelper.VerticalSpaceMedium,
               ),
-              child: Divider(color: ColorsConfig.accent),
+              child: const Divider(color: ColorsConfig.accent),
             );
           },
         );

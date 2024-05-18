@@ -1,7 +1,7 @@
-import 'package:amidoneyet/widgets/add_todo_bar.widget.dart';
 import 'package:amidoneyet/config/colors.config.dart';
 import 'package:amidoneyet/config/general.config.dart';
 import 'package:amidoneyet/helper/db.helper.dart';
+import 'package:amidoneyet/widgets/add_todo_bar.widget.dart';
 import 'package:amidoneyet/widgets/divider.widget.dart';
 import 'package:amidoneyet/widgets/empty.widget.dart';
 import 'package:amidoneyet/widgets/list.widget.dart';
@@ -19,25 +19,31 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: GeneralConfig.appname,
       theme: ThemeData(
-        primaryColor: ColorsConfig.primary,
-        accentColor: ColorsConfig.accent,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: ColorsConfig.primary,
+          secondary: ColorsConfig.accent,
+          surface: ColorsConfig.primary,
+          surfaceContainer: ColorsConfig.primary,
+          surfaceTint: ColorsConfig.primary,
+          onSurface: Colors.white,
+        ),
         primaryTextTheme: Typography.material2018().white,
         textTheme: Typography.material2018().white,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final Widget _loading = DelayedDisplay(
+  final Widget _loading = const DelayedDisplay(
     delay: Duration(seconds: 1),
     child: Center(child: CircularProgressIndicator()),
   );
@@ -52,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Center(child: Text(GeneralConfig.appname)),
+        title: const Center(child: Text(GeneralConfig.appname)),
       ),
       backgroundColor: ColorsConfig.primary,
       body: FutureBuilder(
@@ -68,8 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 children: [
                   Expanded(
-                    child: snapshot.data
-                        ? EmptyWidget()
+                    child: snapshot.data!
+                        ? const EmptyWidget()
                         : CustomScrollView(
                             slivers: <Widget>[
                               SliverToBoxAdapter(
@@ -77,39 +83,38 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     _delay(
-                                      delay: Duration(
+                                      delay: const Duration(
                                         milliseconds:
                                             GeneralConfig.listStaggerDuration,
                                       ),
-                                      child: ListWidget(pinned: true),
+                                      child: const ListWidget(pinned: true),
                                     ),
                                   ],
                                 ),
                               ),
                               SliverStickyHeader(
                                 header: _delay(
-                                  delay: Duration(
+                                  delay: const Duration(
                                     milliseconds:
                                         2 * GeneralConfig.listStaggerDuration,
                                   ),
-                                  slidingBeginOffset: Offset(0, 2),
-                                  child: DividerWidget(),
+                                  slidingBeginOffset: const Offset(0, 2),
+                                  child: const DividerWidget(),
                                 ),
                                 sliver: SliverFillRemaining(
-                                  hasScrollBody: true,
                                   child: _delay(
-                                    delay: Duration(
+                                    delay: const Duration(
                                       milliseconds:
                                           3 * GeneralConfig.listStaggerDuration,
                                     ),
-                                    child: ListWidget(),
+                                    child: const ListWidget(),
                                   ),
                                 ),
                               ),
                             ],
                           ),
                   ),
-                  AddTodoBarWidget(),
+                  const AddTodoBarWidget(),
                 ],
               );
             },
@@ -120,8 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _delay({
-    Duration delay,
-    Widget child,
+    required Duration delay,
+    required Widget child,
     Offset slidingBeginOffset = const Offset(0, 0.1),
   }) {
     return DelayedDisplay(

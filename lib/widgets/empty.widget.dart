@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 class EmptyWidget extends StatelessWidget {
-  const EmptyWidget({Key key}) : super(key: key);
+  const EmptyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class EmptyWidget extends StatelessWidget {
     return DelayedDisplay(
       delay: GeneralConfig.emptyAnimationDelay,
       slidingCurve: Curves.easeOutCubic,
-      slidingBeginOffset: Offset(0, 0.02),
+      slidingBeginOffset: const Offset(0, 0.02),
       child: Center(
         child: Container(
           constraints: BoxConstraints(
@@ -33,25 +33,24 @@ class EmptyWidget extends StatelessWidget {
             children: [
               Text(
                 "How to use:",
-                style: textTheme.bodyText2.copyWith(
+                style: textTheme.bodyMedium?.copyWith(
                   fontSize: 32,
                   color: color,
                 ),
               ),
               UIHelper.verticalSpaceLarge(),
               MarkdownBody(
-                shrinkWrap: true,
                 data: """
 - Add a new item *(pinned)*
 - Swipe to set priority *(unpins it)*
 - Long press to delete
 """,
                 styleSheet: MarkdownStyleSheet(
-                  p: textTheme.bodyText2.copyWith(
+                  p: textTheme.bodyMedium?.copyWith(
                     fontSize: 24,
                     color: color,
                   ),
-                  em: textTheme.bodyText2.copyWith(
+                  em: textTheme.bodyMedium?.copyWith(
                     fontSize: 24,
                     color: color.withOpacity(0.2),
                   ),
@@ -60,14 +59,13 @@ class EmptyWidget extends StatelessWidget {
                     color: color,
                   ),
                 ),
-                fitContent: true,
               ),
               UIHelper.verticalSpaceLarge(),
               UIHelper.verticalSpaceLarge(),
               UIHelper.verticalSpaceLarge(),
               Text(
                 "Have fun!",
-                style: textTheme.bodyText2.copyWith(
+                style: textTheme.bodyMedium?.copyWith(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: color.withOpacity(0.4),

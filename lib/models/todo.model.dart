@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_field_initializers_in_const_classes
+
 class TodoModel {
   static const TodoModelFields fields = TodoModelFields();
 
@@ -10,19 +12,20 @@ class TodoModel {
   final DateTime timestamp;
 
   const TodoModel({
-    this.id,
-    this.title,
-    this.priority,
-    this.pinned,
-    this.timestamp,
+    required this.id,
+    required this.title,
+    required this.priority,
+    required this.pinned,
+    required this.timestamp,
   });
 
   TodoModel.fromJson(Map<String, dynamic> json)
-      : id = json[fields.id],
-        title = json[fields.title],
-        priority = json[fields.priority],
-        pinned = json[fields.pinned],
-        timestamp = DateTime.fromMillisecondsSinceEpoch(json[fields.timestamp]);
+      : id = json[fields.id] as String,
+        title = json[fields.title] as String,
+        priority = json[fields.priority] as double,
+        pinned = json[fields.pinned] as bool,
+        timestamp =
+            DateTime.fromMillisecondsSinceEpoch(json[fields.timestamp] as int);
 
   Map<String, dynamic> toJson() => {
         fields.id: id,

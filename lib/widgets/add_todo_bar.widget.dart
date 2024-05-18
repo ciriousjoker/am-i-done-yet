@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class AddTodoBarWidget extends StatefulWidget {
-  AddTodoBarWidget({Key key}) : super(key: key);
+  const AddTodoBarWidget({super.key});
 
   @override
   _AddTodoBarWidgetState createState() => _AddTodoBarWidgetState();
@@ -22,22 +22,21 @@ class _AddTodoBarWidgetState extends State<AddTodoBarWidget>
   Widget build(BuildContext context) {
     return DelayedDisplay(
       delay: GeneralConfig.addTodoAnimationDelay,
-      slidingBeginOffset: Offset(0, 1),
+      slidingBeginOffset: const Offset(0, 1),
       slidingCurve: Curves.easeOutBack,
-      fadeIn: true,
       child: Container(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: UIHelper.HorizontalSpaceMedium,
           vertical: UIHelper.VerticalSpaceMedium,
         ),
         child: TextField(
           controller: _controllerText,
           cursorColor: ColorsConfig.primary,
-          style: TextStyle(color: Colors.black87),
+          style: const TextStyle(color: Colors.black87),
           decoration: InputDecoration(
             hintText: "Enter New Item",
             fillColor: Colors.white,
-            contentPadding: EdgeInsets.symmetric(
+            contentPadding: const EdgeInsets.symmetric(
               horizontal: UIHelper.HorizontalSpaceMedium,
             ),
             filled: true,
@@ -56,13 +55,15 @@ class _AddTodoBarWidgetState extends State<AddTodoBarWidget>
   }
 
   void _addTodo(String name) {
-    if ((name ?? "").isEmpty) return;
-    db.create(TodoModel(
-      id: Uuid().v4().toString(),
-      title: name,
-      priority: 0.5,
-      pinned: true,
-      timestamp: DateTime.now(),
-    ));
+    if (name.isEmpty) return;
+    db.create(
+      TodoModel(
+        id: const Uuid().v4(),
+        title: name,
+        priority: 0.5,
+        pinned: true,
+        timestamp: DateTime.now(),
+      ),
+    );
   }
 }
